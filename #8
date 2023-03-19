@@ -1,25 +1,65 @@
-class CuentaJoven(Cuenta):
+class CuentaJoven():
 
-    def __init__(self,titular,cantidad=0,bonificacion=0):
-        super().__init__(titular,cantidad)
-        self.bonificacion=bonificacion
-    
-    @property
-    def bonificacion(self):
-        return self.__bonificacion
-    
-    @bonificacion.setter
-    def bonificacion(self,bonificacion):
+    def __init__(self,propietario,edad=0,cantidad=0,bonificacion=0):
+        self.__propietario=propietario
+        self.__edad=edad
+        self.__cantidad=cantidad
         self.__bonificacion=bonificacion
 
-    def mostrar(self):
-        return "Cuenta Joven\n"+"Titular:"+self.titular.mostrar()+" - Cantidad:"+str(self.cantidad)+ "- Bonificación:"+str(self.bonificacion)+"%"
-   
-    def esTitularValido(self):
-        return self.titular.edad < 25 and self.titular.esMayorDeEdad()
+
+    def get_Propietario(self):
+        return self.__cantidad
     
+    def get_Edad(self):
+        return self.__edad
+    
+    def get_Cantidad(self):
+        return self.__propietario
+    
+    def get_Bonificacion(self):
+        return self.__bonificacion
+
+    def set_Cantidad (self, cantidad):
+        self.__cantidad = cantidad
+
+    def set_Edad (self, edad):
+        self.__edad = edad
+
+    def mostrar(self, cantidadn, bonificacion):
+        print(f"Titular de Cuenta Joven: {self.__propietario}")
+        print(f"Edad: {self.__edad}")
+        cantidad_bonificacion = self.__cantidad+(self.__cantidad*bonificacion/100) 
+        print(f"Su saldo luego de retirar {cantidadn} pesos es {self.__cantidad} pesos + la bonificación por Cuenta Joven de {bonificacion}%: SU NUEVO SALDO ES: {cantidad_bonificacion} pesos")
+
     def retirar(self,cantidad):
-        if not self.esTitularValido():
-            print ("error de titular")
-        elif cantidad > 0:
-            super().retirar(cantidad)
+        if cantidad > 0:
+            self.__cantidad = self.__cantidad - cantidad
+            print (f"Usted va a retirar {cantidad} pesos. Su nuevo nuevo saldo es: {self.__cantidad} pesos")
+
+    def es_titular_valido (edad):
+        if edad >= 18:
+            if edad < 25:
+                print ("Es Cuenta Joven")
+            else:
+                print ("El titular no es válido para Cuenta Joven")
+        else:
+            print ("No es Cuenta Joven, es menor de edad, no puede operar")
+            
+
+cuenta1 = CuentaJoven ("Diego Verni", 22, 2000, 0.25)
+print (cuenta1.get_Cantidad())
+print (cuenta1.get_Propietario())
+
+
+edad = int(input("Ingrese su edad: "))
+CuentaJoven.es_titular_valido(edad)
+
+es_cuenta_joven = input("Es cuenta joven? [S/N]: ")
+
+if (es_cuenta_joven=="S"):
+    bonificacion = float(input("Su bonificación es: [%]"))
+    cantidadn = float(input("Introduce su cantidad a retirar: "))
+    cuenta1.retirar(cantidadn)
+    cuenta1.mostrar(cantidadn, bonificacion)
+else:
+    print("No puede retirar.")
