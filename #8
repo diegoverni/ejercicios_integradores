@@ -46,7 +46,7 @@ class CuentaJoven():
             print ("No es Cuenta Joven, es menor de edad, no puede operar")
             
 
-cuenta1 = CuentaJoven ("Diego Verni", 22, 2000, 0.25)
+cuenta1 = CuentaJoven ("Diego Verni", 22, 2000, 0.10)
 print (cuenta1.get_Cantidad())
 print (cuenta1.get_Propietario())
 
