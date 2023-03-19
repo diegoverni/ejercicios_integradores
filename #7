@@ -1,22 +1,20 @@
 class Cuenta():
 
-    def __init__(self,titular,cantidad=0):
-        self.titular=titular
-        self.__cantidad=cantidad
+    def __init__(self, pro, cant=0):
+        self.__propietario=pro
+        self.__cantidad=cant
     
-    @property
-    def titular(self):
-        return self.__titular
-    
-    @property
-    def cantidad(self):
+    #getter
+    def get_Cantidad (self):
         return self.__cantidad
+    
+    def get_Propietario (self):
+        return self.__propietario
+    
+    #setter
+    def set_Cantidad (self, cantidad):
+        self.__cantidad = cantidad
 
-    @titular.setter
-    def titular(self,titular):
-        self.__titular=titular
-
-       
     def mostrar(self):
         print("Nombre: ",self.titular)
         print("Cantidad: ",self.cantidad)
@@ -24,12 +22,26 @@ class Cuenta():
     def ingresar(self,cantidad):
         if cantidad > 0:
             self.__cantidad = self.__cantidad + cantidad
-    
+            return self.__cantidad
+
+            ##print (f"La nueva cantidad es {self.__cantidad}")
+
     def retirar(self,cantidad):
         if cantidad > 0:
             self.__cantidad = self.__cantidad - cantidad
+            print (f"La nueva cantidad es {self.__cantidad}")
 
+cuenta1 = Cuenta ("Diego Verni", 2000)
+print (cuenta1.get_Propietario())
+print (cuenta1.get_Cantidad())
 
-        nueva_cuenta = Cuenta ("Diego", 10)
-        nueva_cuenta.Cuenta()
-        nueva_cuenta.mostrar()
+cantidadn = float(input("Introduce nueva cantidad: "))
+accion = input ("I. Ingresar R. Retirar: ")
+if accion == "I":
+    cuenta1.ingresar(cantidadn)
+    Cuenta.mostrar()
+else:
+    if accion == "R":   
+        cuenta1.retirar(cantidadn)
+    else:
+        accion = input ("I. Ingresar R. Retirar: ")
