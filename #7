@@ -16,8 +16,8 @@ class Cuenta():
         self.__cantidad = cantidad
 
     def mostrar(self):
-        print("Nombre: ",self.__propietario)
-        print("Cantidad: ",self.__cantidad)
+        print("La cuenta a nombre de: ",self.__propietario)
+        print(f"Posee un saldo de: {self.__cantidad} pesos")
     
     def ingresar(self,cantidad):
         if cantidad > 0:
@@ -36,14 +36,17 @@ cuenta1 = Cuenta ("Diego Verni", 2000)
 print (cuenta1.get_Propietario())
 print (cuenta1.get_Cantidad())
 
-cantidadn = float(input("Introduce nueva cantidad: "))
-accion = input ("I. Ingresar R. Retirar: ")
-if accion == "I":
-    cuenta1.ingresar(cantidadn)
-    cuenta1.mostrar()
-else:
-    if accion == "R":   
-        cuenta1.retirar(cantidadn)
+cantidadn = float(input("Introduce el monto a operar (el mismo debe ser positivo): "))
+if cantidadn>=0:
+    accion = input ("I. Ingresar R. Retirar: ")
+    if accion == "I":
+        cuenta1.ingresar(cantidadn)
         cuenta1.mostrar()
     else:
-        accion = input ("I. Ingresar R. Retirar: ")
+        if accion == "R":   
+            cuenta1.retirar(cantidadn)
+            cuenta1.mostrar()
+        else:
+            accion = input ("I. Ingresar R. Retirar: ")
+else:
+    print("El monto a operar no puede ser negativo. Hasta Luego!!!")
